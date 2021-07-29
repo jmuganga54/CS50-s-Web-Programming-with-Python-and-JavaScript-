@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('select').addEventListener('change', (e) => {
+                document.querySelector('#hello').style.color = e.target.value;
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <h1 id="hello">Hello!</h1>
+    <select name="" id="">
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+    </select>
+
+</body>
+
+</html>

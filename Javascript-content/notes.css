@@ -1,0 +1,346 @@
+/**
+*What can Javascript do
+*Running code which can perform computation on client web browser
+*Making the website so much interactive [be able to manipulate the DOM]
+
+*Adding Javascript, this can be done using the <script> tag
+*Example
+<script>
+    Add Javascript code
+</script>
+
+*CREATING FUNCTION IN JAVASCRIPT
+Example
+function functionName ( arguments){
+    codeToExecute;
+}
+
+const functionName = (arguments)=>{
+    codeToExecute
+}
+
+*HANDLING EVENTS ON WEB PAGE
+*We have create a button on a webpage and set it with onclick event, using onclick on button html, we command that hello() function to execute, when the button is clicked
+
+*When clicked on a button the browser should run the hello function
+
+Example
+<head>
+  
+    <script>
+        function hello(){
+            alert("Hello, world");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Testing Javascript</h1>
+    <button onclick="hello()">Click here</button>
+
+</body>
+
+*CREATING VARIABLES IN JAVASCRIPT
+*Variable can be created using the [let, const(constants), var]
+Example
+let counter = 0; //create a variable and initialize it with 0
+
+*MANIPULATING THE HTML CONTENT (DOM)
+*You can change the content of the HTML using some function in a document object
+
+..document.querySelector('h1') //querySelector will return the first element which match 
+*This will find the h1 in html web page[Go though the page and find me h1]
+
+*After finding it change the content
+document.querySelector('h1').innerHTML = 'Goodbye'
+
+*JAVASCRIPT CONDITION 
+*(If else)
+*You can create condition on Javascript code, if else condition
+
+*Syntax
+[
+    if(conditionToTest){
+        codeToRun;//This code will run when the condition is true
+    }else{
+        codeToRun;//This condition will run when the if condition is false
+    }
+
+]
+
+.=== Check of equality [data type + values]
+
+*Example
+  <script>
+        function hello() {
+            if (document.querySelector('h1').textContent === 'Hello!') {
+                document.querySelector('h1').textContent = 'Goodbye'
+            } else {
+                document.querySelector('h1').textContent = 'Hello!';
+            }
+        }
+    </script>
+</head>
+
+
+<body>
+    <h1>Hello!</h1>
+    <button onclick="hello()">Hello!</button>
+
+</body>
+
+*Improving the code above, instead of using [document.querySelector('h1') each time we run the code, we can store the value of the reference and use over and over again
+
+*Example
+let heading = document.querySelector('h1') //store the reference of h1
+
+*VARIABLE LITERALS
+*You can use the variable literals `The counter is now ${counter}` to display content of a variable
+
+*Example
+let counter = 0;
+.alert(`The counter is now ${counter}`
+
+*ALTERNATIVE WAY TO ASSIGN EVENT
+document.querySelector('button').onclick = count; 
+*on external file or js <script> on web page.Instead of assigning on html tag
+
+*Another alternative, the code below means wait until all the content of the web is loaded on the page (event:DOMContentLoaded), then run the anonymous function
+ document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('button').onclick = count
+        })
+
+*MOVING JAVASCRIPT CODE ON THE SEPARATE FILE
+*It is possible to run Javascript code on another file, this means separation of concerned.
+*See [counter.js] + [counter.html]
+
+*DIFFERENT [document.querySelector]
+.document.querySelector('tag')
+.document.querySelector('#id)
+.document.querySelector('.class')
+
+*Selecting list of multiple value which match
+.document.querySelectorAll()
+
+*COMMENTS IN JAVASCRIPT
+//- is used to insert inline comment in javascript
+
+
+#DATASETS
+*You can use dataset to refer
+
+*Example
+ <title>Colors</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            document.querySelectorAll('button').forEach((button) => {
+                button.addEventListener('click',function (){
+
+                    document.querySelector('#hello').style.color = button.dataset.color;
+                })
+
+            })
+
+
+        })
+    </script>
+</head>
+
+<body>
+    <h1 id="hello">Hello!</h1>
+    <button data-color="red">Red</button>
+    <button data-color="blue">Blue</button>
+    <button data-color="green">Green</button>
+</body>
+
+*CONSOLE TOOLS PERFORMS A LOT OF TASK
+
+*ARROW FUNCTIONS
+*Syntax
+[
+    ([arguments])=>{
+        codeToExecute //This is where all the instruction of a function is written
+        {
+]
+    
+*SELECT OPTION DOM MANIPULATION
+*Example
+ <title>Colors</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('select').addEventListener('change', (e) => {
+                document.querySelector('#hello').style.color = e.target.value;
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <h1 id="hello">Hello!</h1>
+    <select name="" id="">
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+    </select>
+
+</body>
+
+#EXAMPLE OF DIFFERENT TYPES OF EVENTS
+.onclick
+.mouseover
+.onkeydown
+.onkeyup
+.onload
+.onblur
+
+#IF YOU WANT TO KNOW WHAT IS GOING ON ON YOU CODE YOU CAN USE [console.log] to output the output and see what is going on.
+
+*MORE DOM MANIPULATION + CREATING NEW ELEMENTS AND APPEND
+  <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').addEventListener('submit', (e) => {
+
+                //Stop form from submitting
+                e.preventDefault();
+
+                //By default, submit button is disabled
+                document.querySelector('#submit').disabled = true;
+
+                document.querySelector('#task').onkeyup = () => {
+                    //If the input value it's length is greater than 0
+                    if (document.querySelector('#task').value.length > 0) {
+                        //Don't disable the submit button
+                        document.querySelector('#submit').disabled = false;
+                    } else {
+                        //Disable the submit button
+                        document.querySelector('#submit').disabled = true;
+                    }
+
+                }
+
+                //Capture the values submitted from input element
+                const captureData = document.querySelector('#task').value;
+                //select the ul where the values will be displayed
+                const listDisplay = document.querySelector('#tasks');
+
+                //create a new element which is list 
+                const li = document.createElement('li')
+                //changing the content of list element to input value
+                li.textContent = captureData;
+
+                //appending the list to  ul
+                listDisplay.append(li);
+
+                //changing the value of input element to empty
+                document.querySelector('#task').value = '';
+
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+    <h1>Tasks</h1>
+    <ul id="tasks">
+
+    </ul>
+    <form action="">
+        <input type="text" id="task" placeholder="New Task">
+        <input type="submit" id='submit' value="submit">
+    </form>
+
+</body>
+
+*USING AN SET INTERVAL FUNCTION TO RUN SOME CODE AFTER SOME TIME
+//setting an interval to execute the count function after every 1 second
+  .setInterval(count, 1000); //count is a function, which will be executed after every 1second
+
+*LOCAL STORAGE
+*Local Storage is useful when you want to store data in local storage
+.localStorage.getItem(key)
+.localStroage.setItem(key, value)
+
+*Example
+//Checking if the localStorage has counter stored already
+if(!localStorage.getItem('counter')){//if not
+    localStorage.setItem('counter',0);//if there is not counter set it to 0
+
+}
+
+//Function
+function count() {
+    let counter = localStorage.getItem('counter'); //getting the value of counter
+  counter++;
+  //selecting the element and change it's value
+  document.querySelector("h1").textContent = localStorage.getItem('counter');
+  localStorage.setItem('counter', counter);//Store the value of counter in localStorage
+}
+
+//Execution
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelector("button").onclick = count;
+
+  //setting an interval to execute the count function after every 1s
+//   setInterval(count, 1000);
+});
+
+*JAVASCRIPT OBJECTS
+*This is an example of Javascript Object which store data in key-value pair
+*first-key, Harry-value
+
+*Example
+let person = {
+    first:'Harry',
+    last:'Potter'
+}
+
+//Accessing and outputting the value of an object
+console.log(person)
+console.log(person.first)//Output the value of key-first
+console.log(person['last'])//Output the value of key-last
+
+*Both of the ways are used to output the value of the Javascript Object
+
+API's
+*Application Programming Interface - in the context of web, is a well defined structure way for services in the internet to communicate with each other.If you want you services to communicate with another services like google map, through API you can send request and receive respond  of data in a well defined way.
+
+*This data  in most of the time is through JSON.Which is the way to transfer data in the form of JAVASCRIPT OBJECT
+
+
+JSON | JAVASCRIPT OBJECT NOTATION
+Example
+{
+    "origin": "New York",
+    "destination":"London",
+    "duration":415
+}
+
+*Another example
+{
+    "origin":{
+        "city":"New York",
+        "code": "JFK"
+    },
+    "destination":{
+        "city":"London",
+        "code":"LHR"
+    },
+    "duration":415
+}
+
+*Another example
+{
+    "rates":{
+        "EUR":0.907,
+        "JPY":109.716,
+        "GBP":0.766,
+        "AUD":1.479
+    },
+    "base":"USD"
+}
+
+*Check this
+[https://api.exchangeratesapi.io/latest/base=USD]
