@@ -10,6 +10,7 @@
 
 ## Structure
 
+- `/HTML_CSS` Contains HTML_CSS part of a course,
 - `/Javascript` Contains Javascript part of a course,
 - `/Python` Contain Python part of a course,
 
